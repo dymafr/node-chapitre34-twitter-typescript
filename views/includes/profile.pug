@@ -1,0 +1,24 @@
+script(src="/javascripts/profile.js")
+div(class="profile-container bg-white mr-3 d-flex flex-column")
+  form( id="form-container" class="d-flex p-3 flex-row justify-content-center align-items-center" action="/users/update/image" method="post" enctype="multipart/form-data" )
+    input(type="file" name="avatar" class="d-none" id="input-avatar")
+    img(src=user.avatar class="img-fluid" id="image-profile")
+  div(class="d-flex flex-row justify-content-center align-items-center")
+    p= `${ user.username } (${ user.local.email })`
+  if currentUser._id.toString() !== user._id.toString()
+    div(class="d-flex flex-row justify-content-center align-items-center")
+      if currentUser.following.map( objId => objId.toString() ).includes(user._id.toString())
+        a(class="btn btn-primary btn-unfollow" href="/users/unfollow/" + user._id) unfollow
+      else
+        a(class="btn btn-outline-primary btn-follow" href="/users/follow/" + user._id) follow
+  div(class="text-center d-flex flex-row justify-content-center align-items-center my-3")
+    div(class="flex-fill")
+      p
+        strong Tweet
+        br
+        span(class="text-primary")= tweets && tweets.filter( t => t.author._id.toString() === user._id.toString()).length
+    div(class="flex-fill")
+      p
+        strong Following
+        br
+        span(class="text-primary")= user.following.length

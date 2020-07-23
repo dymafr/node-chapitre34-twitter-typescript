@@ -1,0 +1,99 @@
+.content{
+  max-width: 1000px;
+  margin-top:20px;
+}
+
+.profile-container {
+  width:30%;
+  max-width:300px;
+  color:#657786;
+}
+
+.navbar {
+  border-bottom:1px solid rgba(0, 0, 0, 0.25);
+}
+
+.img-fluid {
+  max-height: 100px;
+}
+
+body {
+  background-color:#f8f9fa;
+}
+
+.tweet-element {
+  border-radius: 0px;
+  font-size:14px;
+  border:0px;
+  border-top:1px solid #ddd;
+}
+
+.tweet-element:first-child {
+  border-top:0px;
+}
+
+.btn-tweet {
+  border-radius: 30px;
+}
+
+.btn-danger {
+  font-size:10px;
+}
+
+.b {
+  border:1px solid red;
+}
+
+.b1 {
+  border:1px solid green;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+#search-menu-container {
+  position: relative;
+}
+
+.search-menu {
+  position: absolute;
+  background:white;
+  z-index:1;
+  top:20px;
+  left:0px;
+  width:300px;
+  min-height: 200px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+}
+
+.search-menu-item {
+  padding:10px 15px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.search-menu-item:hover {
+  background: #eee;
+  transition: background 0.2s;
+}
+
+.btn-follow {
+  color:#007bff!important;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  border-width: 2px;
+}
+
+.btn-follow:hover {
+  color:white !important;
+}
+
+.btn-unfollow {
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.btn-unfollow:hover {
+}
