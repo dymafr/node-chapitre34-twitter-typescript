@@ -14,10 +14,10 @@ type File = Express.Multer.File;
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: (_: Request, __: File, cb: Function) => {
+    destination: (_, __: File, cb: Function) => {
       cb(null, path.join(__dirname, '../public/images/avatars'));
     },
-    filename: (_, file, cb) => {
+    filename: (_, file: File, cb: Function) => {
       cb(null, `${Date.now()}-${file.originalname}`);
     },
   }),
