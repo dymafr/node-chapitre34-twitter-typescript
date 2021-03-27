@@ -11,14 +11,14 @@ const multer_1 = __importDefault(require("multer"));
 const upload = multer_1.default({
     storage: multer_1.default.diskStorage({
         destination: (_, __, cb) => {
-            cb(null, path_1.default.join(__dirname, '../public/images/avatars'));
+            cb(null, path_1.default.join(__dirname, '../../public/images/avatars'));
         },
         filename: (_, file, cb) => {
             cb(null, `${Date.now()}-${file.originalname}`);
         },
     }),
 });
-exports.userList = async (req, res, next) => {
+const userList = async (req, res, next) => {
     try {
         const search = req.query.search;
         const users = await users_queries_1.searchUsersPerUsername(search);
@@ -28,7 +28,8 @@ exports.userList = async (req, res, next) => {
         next(e);
     }
 };
-exports.userProfile = async (req, res, next) => {
+exports.userList = userList;
+const userProfile = async (req, res, next) => {
     try {
         const username = req.params.username;
         const user = await users_queries_1.findUserPerUsername(username);
@@ -50,14 +51,16 @@ exports.userProfile = async (req, res, next) => {
         next(e);
     }
 };
-exports.signupForm = (req, res) => {
+exports.userProfile = userProfile;
+const signupForm = (req, res) => {
     res.render('users/user-form', {
         errors: null,
         isAuthenticated: req.isAuthenticated(),
         currentUser: req.user,
     });
 };
-exports.signup = async (req, res) => {
+exports.signupForm = signupForm;
+const signup = async (req, res) => {
     const body = req.body;
     try {
         await users_queries_1.createUser(body);
@@ -71,6 +74,7 @@ exports.signup = async (req, res) => {
         });
     }
 };
+exports.signup = signup;
 exports.uploadImage = [
     upload.single('avatar'),
     async (req, res, next) => {
@@ -90,7 +94,7 @@ exports.uploadImage = [
         }
     },
 ];
-exports.followUser = async (req, res, next) => {
+const followUser = async (req, res, next) => {
     try {
         const userId = req.params.userId;
         const [, user] = await Promise.all([
@@ -108,7 +112,8 @@ exports.followUser = async (req, res, next) => {
         next(e);
     }
 };
-exports.unFollowUser = async (req, res, next) => {
+exports.followUser = followUser;
+const unFollowUser = async (req, res, next) => {
     try {
         const userId = req.params.userId;
         const [, user] = await Promise.all([
@@ -126,3 +131,4 @@ exports.unFollowUser = async (req, res, next) => {
         next(e);
     }
 };
+exports.unFollowUser = unFollowUser;

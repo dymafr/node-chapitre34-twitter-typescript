@@ -5,10 +5,11 @@ const env = conf[process.env.NODE_ENV as 'development' | 'production'];
 
 console.log(env);
 
-mongoose
+export const clientPromise = mongoose
   .connect(env.dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useUnifiedTopology: true,
   })
-  .then(() => console.log('connexion db ok !'))
+  .then((m) => m.connection.getClient())
   .catch((err) => console.log(err));

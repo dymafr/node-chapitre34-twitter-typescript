@@ -10,7 +10,10 @@ export interface IUser extends Document {
   local: IUserLocal;
   avatar?: string;
   following?: string[];
-  comparePassword: (password: string) => Promise<boolean>;
+  comparePassword: (
+    password: string,
+    hashedPassword: string
+  ) => Promise<boolean>;
 }
 
 export interface UserForm {

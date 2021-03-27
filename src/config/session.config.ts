@@ -1,9 +1,7 @@
 import { app } from '../app';
 import session from 'express-session';
-import mongoose from 'mongoose';
-import connectMongo from 'connect-mongo';
-
-const MongoStore = connectMongo(session);
+import { clientPromise } from '../database';
+import MongoStore from 'connect-mongo';
 
 app.use(
   session({
@@ -14,8 +12,8 @@ app.use(
       httpOnly: false,
       maxAge: 1000 * 60 * 60 * 24 * 14,
     },
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
+    store: MongoStore.create({
+      clientPromise: clientPromise as any,
       ttl: 60 * 60 * 24 * 14,
     }),
   })

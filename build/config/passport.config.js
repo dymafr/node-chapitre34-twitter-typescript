@@ -28,7 +28,7 @@ passport_1.default.use('local', new LocalStrategy({
     try {
         const user = await users_queries_1.findUserPerEmail(email);
         if (user) {
-            const match = await user.comparePassword(password);
+            const match = await user.comparePassword(password, user.local.password);
             if (match) {
                 done(null, user);
             }

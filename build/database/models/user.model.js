@@ -19,7 +19,7 @@ const userSchema = new Schema({
 userSchema.statics.hashPassword = (password) => {
     return bcrypt_1.default.hash(password, 12);
 };
-userSchema.methods.comparePassword = function (password) {
-    return bcrypt_1.default.compare(password, this.local.password);
+userSchema.methods.comparePassword = (password, hashedPassword) => {
+    return bcrypt_1.default.compare(password, hashedPassword);
 };
 exports.User = mongoose_1.default.model('user', userSchema);

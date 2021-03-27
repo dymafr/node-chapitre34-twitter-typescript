@@ -17,8 +17,11 @@ userSchema.statics.hashPassword = (password: string) => {
   return bcrypt.hash(password, 12);
 };
 
-userSchema.methods.comparePassword = function (password: string) {
-  return bcrypt.compare(password, this.local.password);
+userSchema.methods.comparePassword = (
+  password: string,
+  hashedPassword: string
+) => {
+  return bcrypt.compare(password, hashedPassword);
 };
 
 interface IUserModel extends Model<IUser> {

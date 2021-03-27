@@ -5,14 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.signout = exports.signin = exports.signinForm = void 0;
 const passport_1 = __importDefault(require("passport"));
-exports.signinForm = (req, res) => {
+const signinForm = (req, res) => {
     res.render('auth/auth-form', {
         errors: null,
         isAuthenticated: req.isAuthenticated(),
         currentUser: req.user,
     });
 };
-exports.signin = (req, res, next) => {
+exports.signinForm = signinForm;
+const signin = (req, res, next) => {
     passport_1.default.authenticate('local', (err, user, info) => {
         if (err) {
             next(err);
@@ -36,7 +37,9 @@ exports.signin = (req, res, next) => {
         }
     })(req, res, next);
 };
-exports.signout = (req, res) => {
+exports.signin = signin;
+const signout = (req, res) => {
     req.logout();
     res.redirect('/auth/signin/form');
 };
+exports.signout = signout;

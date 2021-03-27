@@ -31,7 +31,10 @@ passport.use(
       try {
         const user = await findUserPerEmail(email);
         if (user) {
-          const match = await user.comparePassword(password);
+          const match = await user.comparePassword(
+            password,
+            user.local.password
+          );
           if (match) {
             done(null, user);
           } else {
