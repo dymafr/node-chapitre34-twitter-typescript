@@ -557,8 +557,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/mongoose/index.d.ts": {
-        "version": "d77b64bbe4d289554ebd25de59ff2726df07d43dd560972c26bc4d551948166e",
-        "signature": "d77b64bbe4d289554ebd25de59ff2726df07d43dd560972c26bc4d551948166e",
+        "version": "42dcad43f1bc26f310b10a2cf39ed8ddef825cad8f25fc2a39854a34faaf4e7a",
+        "signature": "42dcad43f1bc26f310b10a2cf39ed8ddef825cad8f25fc2a39854a34faaf4e7a",
         "affectsGlobalScope": false
       },
       "../src/database/models/tweet.model.ts": {
@@ -597,8 +597,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/bcrypt/index.d.ts": {
-        "version": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
-        "signature": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
+        "version": "6c407a8b6e5cabde0c5e4ad2d1d0e18c4de012983e9a006fc5e3e121545552f1",
+        "signature": "6c407a8b6e5cabde0c5e4ad2d1d0e18c4de012983e9a006fc5e3e121545552f1",
         "affectsGlobalScope": false
       },
       "../src/database/models/user.model.ts": {
@@ -4029,5 +4029,5 @@
       "../src/routes/users.routes.ts"
     ]
   },
-  "version": "4.2.3"
+  "version": "4.2.4"
 }
