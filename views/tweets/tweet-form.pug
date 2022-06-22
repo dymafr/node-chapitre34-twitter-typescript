@@ -3,11 +3,11 @@ extends ../layout
 block content
   div(class="d-flex flex-row content mx-auto")
     div(class="flex-fill")
-      form(class="card" method="post" action= tweet._id ? "/tweets/update/" + tweet._id : "/tweets")
+      form(class="card" method="post" action= tweet && tweet._id ? "/tweets/update/" + tweet._id : "/tweets")
         div(class="card-header") Ecrire un tweet
         div(class="card-body")
           div(class="form-group")
-            textarea(class="form-control" name="content" placeholder="What is happening")= tweet.content
+            textarea(class="form-control" name="content" placeholder="What is happening")= tweet && tweet.content
           if errors
             ul(class="my-2")
               each error in errors

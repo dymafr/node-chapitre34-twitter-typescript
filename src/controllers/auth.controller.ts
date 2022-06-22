@@ -31,7 +31,11 @@ export const signin = (req: Request, res: Response, next: NextFunction) => {
   })(req, res, next);
 };
 
-export const signout = (req: Request, res: Response) => {
-  req.logout();
-  res.redirect('/auth/signin/form');
+export const signout = (req: Request, res: Response, next: NextFunction) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/auth/signin/form');
+  });
 };

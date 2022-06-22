@@ -75,7 +75,7 @@ export const signup = async (req: Request, res: Response) => {
   try {
     await createUser(body);
     res.redirect('/');
-  } catch (e) {
+  } catch (e: any) {
     res.render('users/user-form', {
       errors: [e.message],
       isAuthenticated: req.isAuthenticated(),
@@ -89,7 +89,7 @@ export const uploadImage = [
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = req.user;
-      if (user) {
+      if (user && req.file?.filename) {
         user.avatar = `/images/avatars/${req.file.filename}`;
         await user.save();
         res.redirect('/');

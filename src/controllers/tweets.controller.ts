@@ -39,7 +39,7 @@ export const tweetCreate = async (req: Request, res: Response) => {
     const body = req.body;
     await createTweet({ ...body, author: req.user!._id });
     res.redirect('/tweets');
-  } catch (e) {
+  } catch (e: any) {
     const errors = Object.keys(e.errors).map((key) => e.errors[key].message);
     res.status(400).render('tweets/tweet-form', {
       errors,
@@ -92,7 +92,7 @@ export const tweetUpdate = async (req: Request, res: Response) => {
     const body = req.body;
     await updateTweet(tweetId, body);
     res.redirect('/tweets');
-  } catch (e) {
+  } catch (e: any) {
     const errors = Object.keys(e.errors).map((key) => e.errors[key].message);
     const tweet = await getTweet(tweetId);
     res.status(400).render('tweets/tweet-form', {
