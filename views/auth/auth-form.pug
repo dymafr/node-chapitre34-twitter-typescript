@@ -5,10 +5,10 @@ block content
     form(class="card w-50 mt-5" method="post" action="/auth/signin")
       div(class="card-header") Connexion
       div(class="card-body")
-        div(class="form-group")
+        div(class="mb-3")
           label Email
           input(class="form-control" type="email" name="email")
-        div(class="form-group")
+        div(class="mb-3")
           label Password
           input(class="form-control" type="password" name="password")
         if errors
@@ -16,4 +16,4 @@ block content
             each error in errors
               li(class="text-danger")= error
         div(class="w-100")
-          input(type="submit" value="connexion" class="btn btn-primary ml-auto d-block")
+          input(type="submit" value="connexion" class="btn btn-primary ms-auto d-block")

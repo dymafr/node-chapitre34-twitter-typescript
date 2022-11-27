@@ -1,5 +1,5 @@
 script(src="/javascripts/profile.js")
-div(class="profile-container bg-white mr-3 d-flex flex-column")
+div(class="profile-container bg-white me-3 d-flex flex-column")
   form( id="form-container" class="d-flex p-3 flex-row justify-content-center align-items-center" action="/users/update/image" method="post" enctype="multipart/form-data" )
     input(type="file" name="avatar" class="d-none" id="input-avatar")
     img(src=user.avatar class="img-fluid" id="image-profile")
