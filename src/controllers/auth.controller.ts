@@ -1,8 +1,12 @@
-import passport from 'passport';
-import { Request, Response, NextFunction } from 'express';
+import passport from "passport";
+import { Request, Response, NextFunction } from "express";
+
+interface AuthInfo {
+  message: string;
+}
 
 export const signinForm = (req: Request, res: Response) => {
-  res.render('auth/auth-form', {
+  res.render("auth/auth-form", {
     errors: null,
     isAuthenticated: req.isAuthenticated(),
     currentUser: req.user,
@@ -10,25 +14,28 @@ export const signinForm = (req: Request, res: Response) => {
 };
 
 export const signin = (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      next(err);
-    } else if (!user) {
-      res.render('auth/auth-form', {
-        errors: [info.message],
-        isAuthenticated: req.isAuthenticated(),
-        currentUser: req.user,
-      });
-    } else {
-      req.login(user, (err) => {
-        if (err) {
-          next(err);
-        } else {
-          res.redirect('/tweets');
-        }
-      });
+  passport.authenticate(
+    "local",
+    (err: Error | null, user: Express.User | false, info: AuthInfo) => {
+      if (err) {
+        next(err);
+      } else if (!user) {
+        res.render("auth/auth-form", {
+          errors: [info.message],
+          isAuthenticated: req.isAuthenticated(),
+          currentUser: req.user,
+        });
+      } else {
+        req.login(user, (err) => {
+          if (err) {
+            next(err);
+          } else {
+            res.redirect("/tweets");
+          }
+        });
+      }
     }
-  })(req, res, next);
+  )(req, res, next);
 };
 
 export const signout = (req: Request, res: Response, next: NextFunction) => {
@@ -36,6 +43,6 @@ export const signout = (req: Request, res: Response, next: NextFunction) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/auth/signin/form');
+    res.redirect("/auth/signin/form");
   });
 };
