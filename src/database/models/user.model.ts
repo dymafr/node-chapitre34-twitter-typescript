@@ -25,7 +25,9 @@ userSchema.methods.comparePassword = (
 };
 
 interface IUserModel extends Model<IUser> {
-  hashPassword: (password: string) => string;
+  // bcrypt.hash rend une promesse : annoncer une chaîne ferait passer le
+  // compilateur à côté de l'oubli d'un await à l'appel.
+  hashPassword: (password: string) => Promise<string>;
 }
 
 export const User = mongoose.model<IUser, IUserModel>('user', userSchema);

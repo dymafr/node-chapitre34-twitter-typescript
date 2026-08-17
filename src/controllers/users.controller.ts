@@ -6,7 +6,7 @@ import {
   findUserPerId,
   removeUserIdToCurrentUserFollowing,
 } from "../queries/users.queries";
-import { getUserTweetsFormAuthorId } from "../queries/tweets.queries";
+import { getUserTweetsFromAuthorId } from "../queries/tweets.queries";
 import path from "path";
 import multer from "multer";
 import { Request, Response, NextFunction } from "express";
@@ -47,7 +47,7 @@ export const userProfile = async (
     const username = req.params.username;
     const user = await findUserPerUsername(username);
     if (user) {
-      const tweets = await getUserTweetsFormAuthorId(user._id as ObjectId);
+      const tweets = await getUserTweetsFromAuthorId(user._id as ObjectId);
       res.render("tweets/tweet", {
         tweets,
         isAuthenticated: req.isAuthenticated(),

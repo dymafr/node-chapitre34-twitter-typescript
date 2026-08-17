@@ -37,6 +37,6 @@ export const getCurrentUserTweetsWithFollowing = (user: IUser) => {
   }
 };
 
-export const getUserTweetsFormAuthorId = (authorId: ObjectId) => {
+export const getUserTweetsFromAuthorId = (authorId: ObjectId) => {
   return Tweet.find({ author: authorId }).populate("author").exec();
 };

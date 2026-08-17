@@ -1,7 +1,7 @@
 import { IUser } from './user.interface';
 
 declare global {
-  declare namespace Express {
+  namespace Express {
     interface User extends IUser {}
   }
 }

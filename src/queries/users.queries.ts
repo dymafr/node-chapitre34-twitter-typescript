@@ -31,8 +31,11 @@ export const findUserPerUsername = (username: string) => {
 };
 
 export const searchUsersPerUsername = (search: string) => {
-  const regExp = `^${search}`;
-  const reg = new RegExp(regExp);
+  // Le texte de recherche vient de l'utilisateur : il faut échapper les
+  // caractères qui ont un sens dans une expression régulière. Sans cela, une
+  // recherche sur « a{100000} » suffit à occuper le processeur du serveur.
+  const echappe = (search ?? '').replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
+  const reg = new RegExp(`^${echappe}`);
   return User.find({ username: { $regex: reg } }).exec();
 };
 
